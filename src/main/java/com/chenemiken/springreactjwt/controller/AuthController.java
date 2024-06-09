@@ -1,11 +1,14 @@
 package com.chenemiken.springreactjwt.controller;
 
 import com.chenemiken.springreactjwt.models.requests.SignupRequest;
+import com.chenemiken.springreactjwt.models.responses.AuthResponse;
 import com.chenemiken.springreactjwt.services.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,9 +22,9 @@ public class AuthController {
   final AuthService authService;
 
   @PostMapping("/signup")
-  public void signup(@Valid @RequestBody SignupRequest request){
+  public ResponseEntity<AuthResponse> signup(@Valid @RequestBody SignupRequest request){
     logger.info("signup request: "+ request);
-    authService.signup(request);
+    return new ResponseEntity<>(authService.signup(request), HttpStatus.OK);
   }
 
   @GetMapping("/")

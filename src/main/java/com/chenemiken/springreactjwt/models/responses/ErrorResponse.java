@@ -1,4 +1,4 @@
-package com.chenemiken.springreactjwt.models;
+package com.chenemiken.springreactjwt.models.responses;
 
 import java.time.LocalDateTime;
 import lombok.Builder;
