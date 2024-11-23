@@ -1,8 +1,8 @@
-package com.chenemiken.springreactjwt.controller;
+package com.chenemiken.mockbase.controller;
 
-import com.chenemiken.springreactjwt.models.requests.SignupRequest;
-import com.chenemiken.springreactjwt.models.responses.AuthResponse;
-import com.chenemiken.springreactjwt.services.AuthService;
+import com.chenemiken.mockbase.models.requests.SignupRequest;
+import com.chenemiken.mockbase.models.responses.AuthResponse;
+import com.chenemiken.mockbase.services.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.logging.Log;
@@ -31,5 +31,5 @@ public class AuthController {
   public String home(){
     return "welcome";
   }
-
+  
 }

@@ -1,4 +1,4 @@
-package com.chenemiken.springreactjwt.models.requests;
+package com.chenemiken.mockbase.models.requests;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

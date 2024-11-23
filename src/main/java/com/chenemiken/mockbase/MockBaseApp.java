@@ -1,11 +1,11 @@
-package com.chenemiken.springreactjwt;
+package com.chenemiken.mockbase;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringReactJwt {
+public class MockBaseApp {
   public static void main(String[] args){
-    SpringApplication.run(SpringReactJwt.class, args);
+    SpringApplication.run(MockBaseApp.class, args);
   }
 }

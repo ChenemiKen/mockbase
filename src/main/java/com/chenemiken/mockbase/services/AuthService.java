@@ -1,16 +1,12 @@
-package com.chenemiken.springreactjwt.services;
+package com.chenemiken.mockbase.services;
 
-import com.chenemiken.springreactjwt.entity.User;
-import com.chenemiken.springreactjwt.exceptions.ModelNotFoundException;
-import com.chenemiken.springreactjwt.exceptions.SignupException;
-import com.chenemiken.springreactjwt.models.requests.SignupRequest;
-import com.chenemiken.springreactjwt.models.responses.AuthResponse;
-import com.chenemiken.springreactjwt.repositories.UserRepository;
-import com.chenemiken.springreactjwt.utils.JwtService;
+import com.chenemiken.mockbase.entity.User;
+import com.chenemiken.mockbase.exceptions.SignupException;
+import com.chenemiken.mockbase.models.requests.SignupRequest;
+import com.chenemiken.mockbase.models.responses.AuthResponse;
+import com.chenemiken.mockbase.repositories.UserRepository;
+import com.chenemiken.mockbase.utils.JwtService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 

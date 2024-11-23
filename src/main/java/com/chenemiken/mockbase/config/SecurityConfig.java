@@ -1,7 +1,7 @@
-package com.chenemiken.springreactjwt.config;
+package com.chenemiken.mockbase.config;
 
-import com.chenemiken.springreactjwt.exceptions.ModelNotFoundException;
-import com.chenemiken.springreactjwt.repositories.UserRepository;
+import com.chenemiken.mockbase.exceptions.ModelNotFoundException;
+import com.chenemiken.mockbase.repositories.UserRepository;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;

@@ -1,4 +1,4 @@
-package com.chenemiken.springreactjwt.entity;
+package com.chenemiken.mockbase.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

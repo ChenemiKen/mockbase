@@ -1,6 +1,6 @@
-package com.chenemiken.springreactjwt.exceptions;
+package com.chenemiken.mockbase.exceptions;
 
-import com.chenemiken.springreactjwt.models.responses.ErrorResponse;
+import com.chenemiken.mockbase.models.responses.ErrorResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 import org.springframework.http.HttpStatus;
