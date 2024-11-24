@@ -56,18 +56,24 @@ public class EndpointServiceImpl implements EndpointService {
         endpointList.put(endpointId, request);
 
         return EndpointCreateResponse.builder()
-                .id(id)
+                .id(endpointId)
                 .path(request.getPath())
                 .method(request.getMethod())
                 .build();
     }
 
+    public HashMap<Long, EndpointRequest> getEndpointList(){
+        return endpointList;
+    }
+
     public void removeEndpoint(Long id){
-        EndpointRequest endpoint = endpointList.get(id);
-        RequestMappingInfo mappingInfo = RequestMappingInfo
-                .paths(endpoint.getPath())
-                .methods(endpoint.getMethod())
-                .build();
-        handlerMapping.unregisterMapping(mappingInfo);
+        if(endpointList.containsKey(id)){
+            EndpointRequest endpoint = endpointList.remove(id);
+            RequestMappingInfo mappingInfo = RequestMappingInfo
+                    .paths(endpoint.getPath())
+                    .methods(endpoint.getMethod())
+                    .build();
+            handlerMapping.unregisterMapping(mappingInfo);
+        }
     }
 }

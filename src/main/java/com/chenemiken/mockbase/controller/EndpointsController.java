@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+
 /**
  * @author ChenemiKen
  * Email chenemiken15@gmail.com
@@ -23,6 +25,12 @@ import org.springframework.web.bind.annotation.*;
 public class EndpointsController {
 
     private final EndpointServiceImpl endpointService;
+
+    @GetMapping()
+    public ResponseEntity<HashMap<Long, EndpointRequest>> listEndpoints(){
+        log.info("request to list endpoints");
+        return new ResponseEntity<>(endpointService.getEndpointList(), HttpStatus.OK);
+    }
 
     @PostMapping()
     public ResponseEntity<EndpointCreateResponse> createEndpoint(
