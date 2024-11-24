@@ -1,10 +1,12 @@
 package com.chenemiken.mockbase.models.requests;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * @author ChenemiKen
@@ -16,9 +18,11 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @AllArgsConstructor
 public class EndpointRequest {
-    @NotNull
+    @NotEmpty
     private String path;
 
-    @NotBlank
-    private String method;
+    @NotNull
+    private RequestMethod method;
+
+    private Object responseBody;
 }

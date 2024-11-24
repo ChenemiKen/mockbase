@@ -1,6 +1,7 @@
 package com.chenemiken.mockbase.services;
 
 import com.chenemiken.mockbase.models.requests.EndpointRequest;
+import com.chenemiken.mockbase.models.responses.EndpointCreateResponse;
 
 /**
  * @author ChenemiKen
@@ -9,5 +10,7 @@ import com.chenemiken.mockbase.models.requests.EndpointRequest;
  */
 
 public interface EndpointService {
-    public void createEndpoint(EndpointRequest endpointRequest) throws NoSuchMethodException;
+    EndpointCreateResponse createEndpoint(EndpointRequest endpointRequest) throws NoSuchMethodException;
+
+    void removeEndpoint(Long id);
 }

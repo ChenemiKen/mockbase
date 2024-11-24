@@ -19,7 +19,8 @@ public class MockBaseApp implements CommandLineRunner {
 
   @Override
   public void run(String... args) throws Exception {
-    EndpointRequest request = new EndpointRequest("/dancing", RequestMethod.GET.toString());
+    EndpointRequest request = new EndpointRequest("/dancing", RequestMethod.GET,
+            "Dynamic endpoint response");
     endpointService.createEndpoint(request);
   }
 }

@@ -1,14 +1,14 @@
 package com.chenemiken.mockbase.controller;
 
 import com.chenemiken.mockbase.models.requests.EndpointRequest;
+import com.chenemiken.mockbase.models.responses.EndpointCreateResponse;
 import com.chenemiken.mockbase.services.impl.EndpointServiceImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author ChenemiKen
@@ -25,8 +25,16 @@ public class EndpointsController {
     private final EndpointServiceImpl endpointService;
 
     @PostMapping()
-    public void createEndpoint(@Valid @RequestBody EndpointRequest endpointRequest) throws NoSuchMethodException {
+    public ResponseEntity<EndpointCreateResponse> createEndpoint(
+            @Valid @RequestBody EndpointRequest endpointRequest) throws NoSuchMethodException {
         log.info("request to create endpoint: {}", endpointRequest.getPath());
-        endpointService.createEndpoint(endpointRequest);
+        return new ResponseEntity<>(endpointService.createEndpoint(endpointRequest), HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteEndpoint(@Valid @PathVariable("id") Long id){
+        log.info("request to remove endpoint with id: {}", id);
+        endpointService.removeEndpoint(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
