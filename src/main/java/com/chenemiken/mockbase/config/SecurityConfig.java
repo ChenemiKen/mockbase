@@ -27,10 +27,10 @@ public class SecurityConfig {
   public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
       return httpSecurity
           .authorizeHttpRequests(authorize -> authorize
-              .requestMatchers( "/", "/error", "/signup").permitAll()
+              .requestMatchers( "/", "/error", "/signup", "/dancing", "/**").permitAll()
               .anyRequest().authenticated()
           )
-          .csrf(csrf -> csrf.ignoringRequestMatchers("/signup", "/next", "/login"))
+          .csrf(csrf -> csrf.ignoringRequestMatchers("/signup", "/next", "/login", "/**"))
           .cors(AbstractHttpConfigurer::disable)
           .httpBasic(Customizer.withDefaults())
           .build();
