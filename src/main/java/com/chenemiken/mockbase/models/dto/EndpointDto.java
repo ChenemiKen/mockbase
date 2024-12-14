@@ -1,6 +1,5 @@
-package com.chenemiken.mockbase.models.requests;
+package com.chenemiken.mockbase.models.dto;
 
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -17,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Data
 @RequiredArgsConstructor
 @AllArgsConstructor
-public class EndpointRequest {
+public class EndpointDto {
+    private Long id;
+
     @NotEmpty
     private String path;
 
