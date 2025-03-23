@@ -31,7 +31,6 @@ public class SecurityConfig {
               .anyRequest().authenticated()
           )
           .csrf(csrf -> csrf.ignoringRequestMatchers("/signup", "/next", "/login", "/**"))
-          .cors(AbstractHttpConfigurer::disable)
           .httpBasic(Customizer.withDefaults())
           .build();
   }
