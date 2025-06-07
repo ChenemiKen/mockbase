@@ -22,5 +22,8 @@ public class MockBaseApp implements CommandLineRunner {
     EndpointDto request = new EndpointDto(null, "/dancing", RequestMethod.GET,
             "Dynamic endpoint response");
     endpointService.createEndpoint(request);
+    EndpointDto request2 = new EndpointDto(null, "/sing", RequestMethod.GET,
+            "He who sings well prays twice");
+    endpointService.createEndpoint(request2);
   }
 }
