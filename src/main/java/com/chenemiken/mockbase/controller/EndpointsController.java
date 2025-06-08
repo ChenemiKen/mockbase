@@ -1,6 +1,6 @@
 package com.chenemiken.mockbase.controller;
 
-import com.chenemiken.mockbase.models.requests.EndpointRequest;
+import com.chenemiken.mockbase.models.dto.EndpointDto;
 import com.chenemiken.mockbase.models.responses.EndpointCreateResponse;
 import com.chenemiken.mockbase.services.impl.EndpointServiceImpl;
 import jakarta.validation.Valid;
@@ -10,7 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
+import java.util.List;
 
 /**
  * @author ChenemiKen
@@ -27,14 +27,14 @@ public class EndpointsController {
     private final EndpointServiceImpl endpointService;
 
     @GetMapping()
-    public ResponseEntity<HashMap<Long, EndpointRequest>> listEndpoints(){
+    public ResponseEntity<List<EndpointDto>> listEndpoints(){
         log.info("request to list endpoints");
-        return new ResponseEntity<>(endpointService.getEndpointList(), HttpStatus.OK);
+        return new ResponseEntity<>(endpointService.listEndpoints(), HttpStatus.OK);
     }
 
     @PostMapping()
     public ResponseEntity<EndpointCreateResponse> createEndpoint(
-            @Valid @RequestBody EndpointRequest endpointRequest) throws NoSuchMethodException {
+            @Valid @RequestBody EndpointDto endpointRequest) throws NoSuchMethodException {
         log.info("request to create endpoint: {}", endpointRequest.getPath());
         return new ResponseEntity<>(endpointService.createEndpoint(endpointRequest), HttpStatus.CREATED);
     }

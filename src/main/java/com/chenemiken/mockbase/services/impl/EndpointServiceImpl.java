@@ -1,6 +1,6 @@
 package com.chenemiken.mockbase.services.impl;
 
-import com.chenemiken.mockbase.models.requests.EndpointRequest;
+import com.chenemiken.mockbase.models.dto.EndpointDto;
 import com.chenemiken.mockbase.models.responses.EndpointCreateResponse;
 import com.chenemiken.mockbase.services.EndpointService;
 import lombok.extern.slf4j.Slf4j;
@@ -11,7 +11,9 @@ import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * @author ChenemiKen
@@ -24,14 +26,14 @@ import java.util.HashMap;
 public class EndpointServiceImpl implements EndpointService {
     private final RequestMappingHandlerMapping handlerMapping;
 
-    private final HashMap<Long, EndpointRequest> endpointList = new HashMap<>();
+    private final HashMap<Long, EndpointDto> endpointList = new HashMap<>();
     private Long id = 0L;
 
     public EndpointServiceImpl(RequestMappingHandlerMapping handlerMapping){
         this.handlerMapping = handlerMapping;
     }
 
-    public EndpointCreateResponse createEndpoint(EndpointRequest request)
+    public EndpointCreateResponse createEndpoint(EndpointDto request)
             throws NoSuchMethodException {
 
         System.out.println("so this this");
@@ -62,13 +64,18 @@ public class EndpointServiceImpl implements EndpointService {
                 .build();
     }
 
-    public HashMap<Long, EndpointRequest> getEndpointList(){
-        return endpointList;
+    public List<EndpointDto> listEndpoints(){
+        List<EndpointDto> endpoints = new ArrayList<>();
+        endpointList.forEach((id, data) -> {
+            data.setId(id);
+            endpoints.add(data);
+        });
+        return endpoints;
     }
 
     public void removeEndpoint(Long id){
         if(endpointList.containsKey(id)){
-            EndpointRequest endpoint = endpointList.remove(id);
+            EndpointDto endpoint = endpointList.remove(id);
             RequestMappingInfo mappingInfo = RequestMappingInfo
                     .paths(endpoint.getPath())
                     .methods(endpoint.getMethod())

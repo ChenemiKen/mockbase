@@ -1,9 +1,9 @@
 package com.chenemiken.mockbase.services;
 
-import com.chenemiken.mockbase.models.requests.EndpointRequest;
+import com.chenemiken.mockbase.models.dto.EndpointDto;
 import com.chenemiken.mockbase.models.responses.EndpointCreateResponse;
 
-import java.util.HashMap;
+import java.util.List;
 
 /**
  * @author ChenemiKen
@@ -12,9 +12,9 @@ import java.util.HashMap;
  */
 
 public interface EndpointService {
-    EndpointCreateResponse createEndpoint(EndpointRequest endpointRequest) throws NoSuchMethodException;
+    EndpointCreateResponse createEndpoint(EndpointDto endpointRequest) throws NoSuchMethodException;
 
-    HashMap<Long, EndpointRequest> getEndpointList();
+    List<EndpointDto> listEndpoints();
 
     void removeEndpoint(Long id);
 }
