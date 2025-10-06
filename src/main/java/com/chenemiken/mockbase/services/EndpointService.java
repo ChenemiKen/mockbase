@@ -16,5 +16,7 @@ public interface EndpointService {
 
     List<EndpointDto> listEndpoints();
 
+    EndpointDto getEndpoint(Long id);
+
     void removeEndpoint(Long id);
 }

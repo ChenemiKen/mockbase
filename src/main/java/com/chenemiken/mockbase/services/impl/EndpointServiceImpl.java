@@ -1,5 +1,6 @@
 package com.chenemiken.mockbase.services.impl;
 
+import com.chenemiken.mockbase.exceptions.ModelNotFoundException;
 import com.chenemiken.mockbase.models.dto.EndpointDto;
 import com.chenemiken.mockbase.models.responses.EndpointCreateResponse;
 import com.chenemiken.mockbase.services.EndpointService;
@@ -36,11 +37,9 @@ public class EndpointServiceImpl implements EndpointService {
     public EndpointCreateResponse createEndpoint(EndpointDto request)
             throws NoSuchMethodException {
 
-        System.out.println("so this this");
-
         Object handler = new Object() {
             public ResponseEntity<Object> handleRequest() {
-                System.out.println("ran dancing");
+                log.info("ran dancing");
                 return new ResponseEntity<>(request.getResponseBody(), HttpStatus.OK);
             }
         };
@@ -66,11 +65,20 @@ public class EndpointServiceImpl implements EndpointService {
 
     public List<EndpointDto> listEndpoints(){
         List<EndpointDto> endpoints = new ArrayList<>();
-        endpointList.forEach((id, data) -> {
-            data.setId(id);
+        endpointList.forEach((endPointId, data) -> {
+            data.setId(endPointId);
             endpoints.add(data);
         });
         return endpoints;
+    }
+
+    public EndpointDto getEndpoint(Long id){
+        if(endpointList.containsKey(id)){
+            EndpointDto endpointDto = endpointList.get(id);
+            endpointDto.setId(id);
+            return endpointDto;
+        }
+        throw new ModelNotFoundException("Not found");
     }
 
     public void removeEndpoint(Long id){

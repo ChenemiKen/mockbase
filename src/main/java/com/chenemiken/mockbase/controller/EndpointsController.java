@@ -2,6 +2,7 @@ package com.chenemiken.mockbase.controller;
 
 import com.chenemiken.mockbase.models.dto.EndpointDto;
 import com.chenemiken.mockbase.models.responses.EndpointCreateResponse;
+import com.chenemiken.mockbase.services.EndpointService;
 import com.chenemiken.mockbase.services.impl.EndpointServiceImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +25,7 @@ import java.util.List;
 @RequestMapping("/api/v1/endpoints")
 public class EndpointsController {
 
-    private final EndpointServiceImpl endpointService;
+    private final EndpointService endpointService;
 
     @GetMapping()
     public ResponseEntity<List<EndpointDto>> listEndpoints(){
@@ -37,6 +38,13 @@ public class EndpointsController {
             @Valid @RequestBody EndpointDto endpointRequest) throws NoSuchMethodException {
         log.info("request to create endpoint: {}", endpointRequest.getPath());
         return new ResponseEntity<>(endpointService.createEndpoint(endpointRequest), HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<EndpointDto> getEndpoint(@Valid @PathVariable("id") Long id)
+            throws NoSuchMethodException {
+        log.info("request to get endpoint with id: {}", id);
+        return new ResponseEntity<>(endpointService.getEndpoint(id), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
